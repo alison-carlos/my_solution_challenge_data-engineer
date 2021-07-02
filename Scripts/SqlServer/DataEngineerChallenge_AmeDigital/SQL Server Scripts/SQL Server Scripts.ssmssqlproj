@@ -25,6 +25,24 @@
           <AssociatedConnUserName>admin.amedigital</AssociatedConnUserName>
           <FullPath>Creating_Raw_Table.sql</FullPath>
         </FileNode>
+        <FileNode Name="Inserts_Production_Table.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-O45NRLD\TEST:False:admin.amedigital</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-O45NRLD\TEST</AssociatedConnSrvName>
+          <AssociatedConnUserName>admin.amedigital</AssociatedConnUserName>
+          <FullPath>Inserts_Production_Table.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Inserts_Production2_Table.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-O45NRLD\TEST:False:admin.amedigital</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-O45NRLD\TEST</AssociatedConnSrvName>
+          <AssociatedConnUserName>admin.amedigital</AssociatedConnUserName>
+          <FullPath>Inserts_Production2_Table.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Selects.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-O45NRLD\TEST:False:admin.amedigital</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-O45NRLD\TEST</AssociatedConnSrvName>
+          <AssociatedConnUserName>admin.amedigital</AssociatedConnUserName>
+          <FullPath>Selects.sql</FullPath>
+        </FileNode>
       </Items>
     </LogicalFolder>
     <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
