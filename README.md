@@ -76,5 +76,5 @@ cursor.close()
 
 Eu obtei por fazer ELT (Extract, Load, Transform) então, carreguei o arquivo ".csv" no formato original e foi realizando os tratamentos antes de colocar na tabela final.
 
-![Select na tabela RAW](images\select_raw_data.png)
+![Select na tabela RAW](images/select_raw_data.png)
 
