@@ -329,5 +329,5 @@ respondente_id int
 
 O resultado final ficou assim:
 
-![Select na tabela resp_usa_ferrament](images\select_resp_usa_ferrament.PNG)
+![Select na tabela resp_usa_ferrament](images/select_resp_usa_ferrament.PNG)
 
