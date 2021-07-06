@@ -1,12 +1,13 @@
 import pandas as pd
 import pyodbc
+import conf as conf
 
-# Connection with database
+credentials = conf.credentials()
 
-server = 'DESKTOP-O45NRLD\TEST' 
-database = 'AmeDigital_Project' 
-username = 'admin.amedigital' 
-password = 'Am3D1g1T4L' 
+server = credentials[0]
+database = credentials[1]
+username = credentials[2]
+password = credentials[3]
 cnxn = pyodbc.connect('DRIVER={SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
 cursor = cnxn.cursor()
 
