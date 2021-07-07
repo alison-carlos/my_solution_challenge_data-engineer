@@ -331,3 +331,117 @@ O resultado final ficou assim:
 
 ![Select na tabela resp_usa_ferrament](images/select_resp_usa_ferrament.PNG)
 
+Para o requisito de negócio abaixo a regra que apliquei foi bastante similiar:
+
+> Cada linha da tabela linguagem_programacao deve conter uma única linguagem de programação.
+
+Através do Python eu separei as linguagem dististas, e após isso criei o relacionamento entre o respondente (respondente_id) e a linguagem (linguagem_programacao_id)
+
+~~~python
+import pandas as pd
+import pyodbc
+import conf as conf
+
+credentials = conf.credentials()
+
+server = credentials[0]
+database = credentials[1]
+username = credentials[2]
+password = credentials[3]
+cnxn = pyodbc.connect('DRIVER={SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
+cursor = cnxn.cursor()
+
+# Open the cursor
+cursor = cnxn.cursor()
+
+# This variable will receive the uniques programming language names.
+all_programming_language = set()
+
+# This variable will receive the ID of the respodent and the ID of the Programming Languages
+resp_usa_linguagem = list()
+
+# Convert the object pyodbc in a list
+list_of_languages = list(cursor.execute("Select distinct Respondent, LanguageWorkedWith from [RawData].[Respondent] where LanguageWorkedWith is not null order by Respondent asc"))
+
+for row in list_of_languages:
+    
+    languages = row[1].split(';')
+    
+    for language in languages:
+        # Assigning the distinct programming languages to the set.
+        all_programming_language.add(language)
+
+        # Creating the relation between the respondent and the programming languages that he uses.
+        x = {
+        'respondente_id' : row[0],
+        'linguagem_programacao_id' : language
+        }
+
+        resp_usa_linguagem.append(x)
+
+# Clear the table resp_usa_linguagem
+cursor.execute("Truncate table Production.resp_usa_linguagem")
+
+# Clear the table linguagem_programacao
+cursor.execute("delete from Production.linguagem_programacao")
+
+for programming_language in all_programming_language:
+    # Insert the distinct programming language on the table.
+    cursor.execute("Insert into Production.linguagem_programacao (nome) values (?)", programming_language) 
+
+list_of_languages_with_id = list(cursor.execute("Select * from Production.linguagem_programacao"))
+
+for row in resp_usa_linguagem:
+    
+    for language in list_of_languages_with_id:
+        
+        if row['linguagem_programacao_id'] == language[1]:
+            row['linguagem_programacao_id'] = language[0]
+            break
+
+for row in resp_usa_linguagem:
+    cursor.execute("Insert into Production.resp_usa_linguagem (respondente_id, linguagem_programacao_id) values (?, ?)", row['respondente_id'], row['linguagem_programacao_id'])
+
+cnxn.commit()
+cursor.close()
+~~~
+
+No SQL Server eu havia criado as tabelas:
+
+```
+drop table if exists Production.linguagem_programacao 
+
+create table Production.linguagem_programacao (
+
+id int identity primary key not null,
+nome varchar(255)
+)
+
+
+drop table if exists Production.resp_usa_linguagem 
+
+create table Production.resp_usa_linguagem (
+respondente_id int,
+linguagem_programacao_id int,
+momento bit
+
+)
+
+alter table Production.resp_usa_linguagem
+add foreign key (respondente_id) references Production.respondente(id)
+
+alter table Production.resp_usa_linguagem
+add foreign key (linguagem_programacao_id) references Production.linguagem_programacao(id)
+
+```
+
+O resultado ficou assim:
+
+![Select na tabela resp_usa_linguagem](images/select_resp_usa_linguagem.PNG)
+
+Comparando com o arquivo ".csv"
+
+![Verificando arquivo CSV](images/checking_on_the_csv_file.PNG)
+
+
+
