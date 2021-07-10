@@ -83,7 +83,7 @@ Insert into Production.respondente (id, nome, contrib_open_source, programa_hobb
 
 Select Respondent as [id], null as [nome], case when OpenSource = 'Yes' then 1 else 0 end as [contrib_open_source],
 case when Hobby = 'Yes' then 1 else 0 end as programa_hobby,
-round(((convert(float,ConvertedSalary) / 3.81) / 12), 2) as [salario],
+round(((convert(float,ConvertedSalary) * 3.81) / 12), 2) as [salario],
 so.id as [sistema_operacional_id],
 p.id as [pais_id],
 e.id as [empresa_id]
