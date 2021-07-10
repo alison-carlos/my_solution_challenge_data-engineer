@@ -447,25 +447,44 @@ ________________________________________________________________________________
 
 Após carregar os dados eu trabalhei na elaboração das consultas SQL para responder as perguntas propostas no desafio.
 
+
 > 1. Qual a quantidade de respondentes de cada país?
 
 ![1º question](images/selects/first_question.PNG)
+
 
 > 2. Quantos usuários que moram em "United States" gostam de Windows?
 
 ![2º question](images/selects/second_question.PNG)
 
+
 > 3. Qual a média de salário dos usuários que moram em Israel e gostam de Linux?
 
 ![3º question](images/selects/third_question.PNG)
+
 
 > 4. Qual a média e o desvio padrão do salário dos usuários que usam Slack para cada tamanho de empresa disponível? (dica: o resultado deve ser uma tabela semelhante a apresentada baixo)
 
 ![4º question](images/selects/fourfy_question.PNG)
 
+
 > 5. Qual a diferença entre a média de salário dos respondentes do Brasil que acham que criar código é um hobby e a média de todos de salário de todos os respondentes brasileiros agrupado por cada sistema operacional que eles usam? (dica: o resultado deve ser uma tabela semelhante a apresentada abaixo)
 
 ![5º question](images/selects/fifth_question.PNG)
 
+
+> 6. Quais são as top 3 tecnologias mais usadas pelos desenvolvedores?
+
+![6º question](images/selects/sixth_question.PNG)
+
+
+> 7. Quais são os top 5 países em questão de salário?
+
+![7º question](images/selects/seventh_question.PNG)
+
+
+> 8. A tabela abaixo contém os salários mínimos mensais de cinco países presentes na amostra de dados. Baseado nesses valores, gostaríamos de saber quantos usuários ganham mais de 5 salários mínimos em cada um desses países.
+
+![8º question](images/selects/eighth.PNG)
 
 

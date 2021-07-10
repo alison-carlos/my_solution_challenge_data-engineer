@@ -75,3 +75,44 @@ on r.pais_id = m.pais_id
 join Production.sistema_operacional so (nolock)
 on r.sistema_operacional_id = so.id
 group by so.nome, media_hobby
+
+-- 6. Quais são as top 3 tecnologias mais usadas pelos desenvolvedores?
+
+Select top 3 lp.nome, COUNT(lp.id) as Quantidade from Production.respondente r (nolock)
+join Production.resp_usa_linguagem rul (nolock)
+on r.id = rul.respondente_id
+join Production.linguagem_programacao lp (nolock)
+on rul.linguagem_programacao_id = lp.id
+group by lp.nome
+order by Quantidade desc
+
+-- 7. Quais são os top 5 países em questão de salário?
+
+Select top 5 p.nome, round(avg(r.salario), 2) as salario from Production.respondente r (nolock)
+join Production.pais p (nolock)
+on r.pais_id = p.id
+where r.salario > 0
+group by p.nome
+order by salario desc
+
+-- 8. A tabela abaixo contém os salários mínimos mensais de cinco países presentes na amostra de dados. Baseado nesses valores, gostaríamos de saber 
+-- quantos usuários ganham mais de 5 salários mínimos em cada um desses países.
+
+
+create table #minimum_salary (
+
+paid_id int,
+minimum_salary_month float
+
+)
+
+Insert into #minimum_salary values (176, 4787.90), (213, 243.52), (192, 6925.63), (165, 6664.00), (229, 5567.68)
+
+Select p.nome, COUNT(*) as quantidade from Production.respondente r (nolock)
+join Production.pais p (nolock)
+on r.pais_id = p.id
+join #minimum_salary ms (nolock)
+on p.id = ms.paid_id
+where (r.salario * 5) > ms.minimum_salary_month
+group by p.nome
+order by quantidade desc
